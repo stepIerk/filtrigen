@@ -1,0 +1,12 @@
+services:
+  filtrigen:
+    build: .
+    container_name: filtrigen
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    # Позволяет из контейнера обращаться к Ollama, запущенной на хосте
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
